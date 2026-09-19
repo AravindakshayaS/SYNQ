@@ -1,0 +1,16 @@
+{
+  "name": "synq",
+  "private": true,
+  "type": "module",
+  "workspaces": ["backend", "frontend"],
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "dev:api": "npm run dev --workspace backend",
+    "build": "npm run build --workspace frontend",
+    "start": "npm start --workspace backend",
+    "test": "npm test --workspaces",
+    "check": "npm run check --workspace backend",
+    "admin:create": "npm run admin:create --workspace backend"
+  }
+}
