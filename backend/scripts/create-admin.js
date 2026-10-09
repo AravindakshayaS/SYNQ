@@ -1,8 +1,8 @@
 import { createInterface } from 'node:readline/promises';
 import { Writable } from 'node:stream';
-import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { readConfig } from '../src/config.js';
+import { connectDB, disconnectDB } from '../src/db.js';
 import { User, models } from '../src/models.js';
 import { registrationSchema } from '../src/validation.js';
 
@@ -29,7 +29,7 @@ try {
   process.stdout.write('\n');
   if (password !== confirmation) throw new Error('Passwords do not match');
   const fields = registrationSchema.parse({ name, email, password });
-  await mongoose.connect(config.MONGODB_URI, { serverSelectionTimeoutMS: 10000 });
+  await connectDB(config.MONGO_URI);
   await Promise.all(models.map(Model => Model.init()));
   const existing = await User.findOne({ email: fields.email });
   if (existing) {
@@ -46,5 +46,5 @@ try {
 } finally {
   muted = false;
   prompt.close();
-  await mongoose.disconnect();
+  await disconnectDB();
 }

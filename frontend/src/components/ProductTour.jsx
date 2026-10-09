@@ -77,7 +77,7 @@ function PhoneNav({ active, onNavigate }) {
 
 function OverviewScreen({ onNavigate, onThemeToggle, theme }) {
   return <>
-    <PhoneHeader label="THURSDAY, SEPT 10" title="Good morning, Aravi." action="✦" actionLabel={`Switch to ${theme === 'plum' ? 'blush' : 'plum'} preview theme`} onAction={onThemeToggle}/>
+    <PhoneHeader label="THURSDAY, SEPT 10" title="Good morning, Aravi." action="✦" actionLabel={`Switch to ${theme === 'onyx' ? 'Stucco' : 'Onyx'} preview theme`} onAction={onThemeToggle}/>
     <div className="phone-hero-card"><span>YOUR RHYTHM TODAY</span><strong>70%</strong><p>Three small wins are already yours.</p><div className="phone-progress"><i/></div></div>
     <div className="phone-section-title"><strong>Today’s flow</strong><button type="button" onClick={() => onNavigate('tasks')}>View all</button></div>
     <div className="phone-timeline">
@@ -144,7 +144,7 @@ function Phone({ screen, onNavigate, theme, screenProps, announcement }) {
 
 export default function ProductTour() {
   const [activeFeature, setActiveFeature] = useState('overview');
-  const [previewTheme, setPreviewTheme] = useState('plum');
+  const [previewTheme, setPreviewTheme] = useState('onyx');
   const [tasks, setTasks] = useState(initialTasks);
   const [mood, setMood] = useState('Good');
   const [planGenerated, setPlanGenerated] = useState(false);
@@ -164,9 +164,9 @@ export default function ProductTour() {
     notify(`${feature[0].toUpperCase()}${feature.slice(1)} preview opened`);
   };
   const toggleTheme = () => {
-    const nextTheme = previewTheme === 'plum' ? 'blush' : 'plum';
+    const nextTheme = previewTheme === 'onyx' ? 'stucco' : 'onyx';
     setPreviewTheme(nextTheme);
-    notify(`${nextTheme === 'blush' ? 'Blush' : 'Plum'} theme applied`);
+    notify(`${nextTheme === 'stucco' ? 'Stucco' : 'Onyx'} theme applied`);
   };
   const toggleTask = (id) => {
     if (!id) return;
@@ -202,7 +202,7 @@ export default function ProductTour() {
   };
 
   return <section className="product-tour interactive-tour" id="a-little-more" aria-label="Interactive SYNQ feature preview">
-    <div className="simulator-control-bar"><span><i/> Live mobile preview</span><button type="button" className="preview-theme-toggle" aria-pressed={previewTheme === 'blush'} onClick={toggleTheme}>{previewTheme === 'plum' ? 'Try blush theme' : 'Use plum theme'}</button></div>
+    <div className="simulator-control-bar"><span><i/> Live mobile preview</span><button type="button" className="preview-theme-toggle" aria-pressed={previewTheme === 'stucco'} onClick={toggleTheme}>{previewTheme === 'onyx' ? 'Try Stucco theme' : 'Use Onyx theme'}</button></div>
     <div className="feature-switcher" role="tablist" aria-label="Choose a feature to preview">
       {tourItems.map((item) => <button
         type="button"
